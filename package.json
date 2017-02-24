@@ -1,0 +1,32 @@
+{
+  "name": "echarts-plus",
+  "version": "0.0.1",
+  "description": "A visualization grammar extension for Echarts to make it more powerful.",
+  "main": "dist/echarts-plus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutingzhao1991/echarts-plus.git"
+  },
+  "keywords": [
+    "visualization",
+    "echarts"
+  ],
+  "author": "yutingzhao1991",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yutingzhao1991/echarts-plus/issues"
+  },
+  "homepage": "https://github.com/yutingzhao1991/echarts-plus#readme",
+  "dependencies": {
+    "echarts": "^3.4.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.3.2",
+    "webpack": "^2.2.1"
+  }
+}
