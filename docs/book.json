@@ -1,0 +1,9 @@
+{
+  "gitbook": ">3.0.0",
+  "links": {
+    "sharing": {
+      "facebook": false,
+      "twitter": false
+    }
+  }
+}
