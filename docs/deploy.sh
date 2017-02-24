@@ -1,6 +1,8 @@
 rm -rf _book
 gitbook build
 cd _book
+cp -r ../../dist dist
+cp -r ../../examples examples
 git init
 git add -A
 git commit -m 'update book'
