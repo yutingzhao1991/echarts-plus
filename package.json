@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --watch",
     "build": "webpack",
-    "book": "cd docs && gitbook build"
+    "book": "cd docs && sh deploy.sh"
   },
   "repository": {
     "type": "git",
