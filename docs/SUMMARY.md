@@ -5,3 +5,5 @@
   - [rect](rect.md)
   - [polar](polar.md)
   - [map](map.md)
+- [Github](https://github.com/yutingzhao1991/echarts-plus)
+- [NPM](https://www.npmjs.com/package/echarts-plus)
