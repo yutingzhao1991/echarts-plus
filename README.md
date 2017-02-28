@@ -8,6 +8,8 @@ A visualization grammar extension for Echarts to make it more powerful.
 
 Echarts is awsome, but echarts option by designed come from charts itself. Build echarts option from data is unhandy. echarts-plus use a [vega](https://github.com/vega/vega)-like visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
 
+Echarts 很强大，但是它的配置的设计是从图表本身的角度出发的。所以会导致从数据构建到 echarts 的配置变得很不友好。echarts-plus 从数据可视化本身出发，通过类似[vega](https://github.com/vega/vega)的一套可视化语法来让创建echarts图表配置变得更高效。
+
 ## Quick Start
 
 Simple demo code:
@@ -54,7 +56,7 @@ Simple demo code:
 
 Then you will get:
 
-![demo](http://yutingzhao.com/echarts-plus/images/demo.png])
+![demo](http://yutingzhao.com/echarts-plus/images/demo.png)
 
 [Live Demo](http://yutingzhao.com/echarts-plus/examples/rect/index.html)
 
