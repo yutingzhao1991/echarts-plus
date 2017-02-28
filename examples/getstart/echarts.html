@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <script src="../../dist/echarts-plus.js"></script>
+  <script src="./data.js"></script>
+  <script>
+  var myChart = echarts.init(document.getElementById('main'))
+  // 指定图表的配置项和数据
+  var series = _.chain(data).groupBy('platform').map((group, platform) => {
+    var d = _.chain(group).sortBy('dt').map('revenue').value()
+    return {
+      name: platform,
+      type: 'bar',
+      data: d
+    }
+  }).value()
+  var option = {
+    tooltip: {},
+    legend: {
+      data: _.map(series, 'name')
+    },
+    xAxis: {
+      data: _.chain(data).sortBy('dt').map('dt').uniq('dt').value()
+    },
+    yAxis: {},
+    series: series
+  }
+  myChart.setOption(option)
+  </script>
+</body>
+</html>

@@ -58,7 +58,7 @@ Then you will get:
 
 ![demo](http://yutingzhao.com/echarts-plus/images/demo.png)
 
-[Live Demo](http://yutingzhao.com/echarts-plus/examples/rect/index.html)
+[Live Demo](http://yutingzhao.com/echarts-plus/examples/rect/base.html)
 
 When you need write a echarts-plus option, you only need follow next steps:
 
@@ -71,10 +71,6 @@ When you need write a echarts-plus option, you only need follow next steps:
 1. 选择一个坐标系，当前有`(map | polar | rect )`坐标系可选。
 2. 配置数据列到视觉通道的映射。
 3. 完成！谁用谁知道。
-
-### Examples
-
-- [rect coord](https://github.com/yutingzhao1991/echarts-plus/blob/master/examples/rect/index.html)
 
 ### API DOC
 

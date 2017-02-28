@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <script src="../../dist/echarts-plus.js"></script>
+  <script src="./data.js"></script>
+  <script>
+  new EChartsPlus(data, {
+    coord: 'rect',
+    visions: [{
+      channel: 'y',
+      field: 'revenue'
+    }, {
+      channel: 'legend',
+      field: 'platform'
+    }, {
+      channel: 'x',
+      field: 'dt'
+    }]
+  }).renderTo('main')
+  </script>
+</body>
+</html>

@@ -85909,6 +85909,7 @@ function generateRectSeries (params) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 var echarts = __webpack_require__(135)
 var transfer = __webpack_require__(136)
+var lodash = __webpack_require__(364)
 
 class EChartsPlus {
 
@@ -85958,6 +85959,8 @@ class EChartsPlus {
 }
 
 window.EChartsPlus = window.EChartsPlus || EChartsPlus
+window.echarts = window.echarts || echarts
+window._ = window._ || lodash
 
 /* harmony default export */ __webpack_exports__["default"] = EChartsPlus;
 
