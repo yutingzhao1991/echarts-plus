@@ -20,7 +20,7 @@ echarts-plus 的主旨是为了从数据可视化本身的角度去构建 echart
 
 ![demo](./images/getstart.png)
 
-**Echarts**
+**Use Echarts**
 
 ```js
 var myChart = echarts.init(document.getElementById('main'))
@@ -49,7 +49,7 @@ myChart.setOption(option)
 
 [Live demo](./examples/getstart/echarts.html)
 
-**EchartsPlus**
+**Use EchartsPlus**
 
 ```js
 new EChartsPlus(data, {
