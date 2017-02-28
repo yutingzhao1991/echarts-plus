@@ -1,4 +1,5 @@
 rm -rf _book
+cp ../README.md _README.md
 gitbook build
 cd _book
 cp -r ../../dist dist

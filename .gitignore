@@ -1,3 +1,4 @@
 node_modules/
 *.log
+_README.md
 docs/_book/

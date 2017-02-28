@@ -160,23 +160,23 @@ exports.buildOption = function (data, config) {
   }
   xVision = xVision[0]
   yVision = yVision[0]
-  var d = data.filter((item) => {
-    return provinceDictData[item[xVision.field]] != null
-  }).map((item) => {
+  var d = data.map((item) => {
+    var name
+    if (provinceDictData[item[xVision.field]]) {
+      name = provinceDictData[item[xVision.field]].name
+    } else {
+      name = xVision.field
+    }
     return {
-      name: provinceDictData[item[xVision.field]].name,
+      name: name,
       value: item[yVision.field]
     }
   })
   return {
-    tooltip: {
-      trigger: 'item'
-    },
     visualMap: {
       min: _.minBy(d, 'value').value,
       max: _.maxBy(d, 'value').value,
       left: 'left',
-      show: false,
       top: 'bottom',
       text: ['高','低'], // 文本，默认为数值文本
       calculable: true
@@ -185,14 +185,6 @@ exports.buildOption = function (data, config) {
       name: '中国',
       type: 'map',
       mapType: 'china',
-      label: {
-        normal: {
-          show: false
-        },
-        emphasis: {
-          show: false
-        }
-      },
       data: d
     }]
   }

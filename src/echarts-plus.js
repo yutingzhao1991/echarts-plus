@@ -19,7 +19,11 @@ class EChartsPlus {
   setOption (option) {
     this._option = option
     if (this.echarts) {
-      this._echartsOption = transfer(this._data, this._option, this._option && this._option.custom)
+      if (this._option.coord == null) {
+        this._echartsOption = this._option
+      } else {
+        this._echartsOption = transfer(this._data, this._option)
+      }
       this.echarts.setOption(this._echartsOption)
     }
   }

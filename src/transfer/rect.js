@@ -60,9 +60,15 @@ exports.buildOption = function (data, config) {
   // 按照配置将数据的数据属性映射到不同的视觉通道上
   // 按照legend构建series数据
   var legendVision = _.find(config.visions, { channel: 'legend' })
-  var legendField
+  var legendField, legendTarget
   if (legendVision) {
     legendField = legendVision.field
+    if (yVision.length > 0) {
+      // 当有细分而且存在多个指标的时候，可以设置legend用于切换指标还是切换细分
+      // legendTarget in (y,series)
+      // 当 legendTarget == null 时使用 series:y 作为一个legend项
+      legendTarget = config.coordConfig && config.coordConfig.legendTarget
+    }
   }
   
   if (legendField) {
@@ -74,28 +80,56 @@ exports.buildOption = function (data, config) {
         var color = utils.getColor()
         return yVision.map((vision) => {
           var itemName = name + ':' + (vision.option && vision.option.name || vision.field)
-          return generateRectSeries(group, config.visions, vision, categoryIndex, itemName, color)
+          var seriesName
+          if (legendTarget === 'y') {
+            seriesName = vision.option && vision.option.name || vision.field
+          } else if (legendTarget === 'legend') {
+            seriesName = name
+          } else {
+            seriesName = itemName
+          }
+          return generateRectSeries({
+            data: group,
+            visions: config.visions,
+            yVision: vision,
+            categoryIndex: categoryIndex,
+            name: seriesName,
+            itemName: itemName,
+            color: color
+          })
         })
       } else {
-        return generateRectSeries(group, config.visions, yVision[0], categoryIndex, name)
+        return generateRectSeries({
+          data: group,
+          visions: config.visions,
+          yVision: yVision[0],
+          categoryIndex: categoryIndex,
+          name: name
+        })
       }
     }).flatten().value()
   } else {
     series = yVision.map((v) => {
-      return generateRectSeries(data, config.visions, v, categoryIndex)
+      return generateRectSeries({
+        data: data,
+        visions: config.visions,
+        yVision: v,
+        categoryIndex: categoryIndex
+      })
     })
   }
   opt.legend = {
     show: true,
-    data: series.map((s) => {
+    data: _.chain(series).map((s) => {
       return s.name
-    })
+    }).uniq().value()
   }
   opt.series = series
   return opt
 }
 
-function generateRectSeries (data, visions, yVision, categoryIndex, name, color) {
+function generateRectSeries (params) {
+  var { data, visions, yVision, categoryIndex, name, color, itemName } = params
   var list = []
   visions = _.chain(visions).filter((v) => {
     return v.channel !== 'legend' && v.channel !== 'y'
@@ -103,10 +137,14 @@ function generateRectSeries (data, visions, yVision, categoryIndex, name, color)
     return visionsOrder[item.field]
   }).value()
   list = data.map((item) => {
-    return visions.map((v) => {
+    var value = visions.map((v) => {
       // 获取映射到坐标系中视觉通道上的值，如果是分类通道，那么需要按照categoryIndex转化为对应分类的index
       return categoryIndex[v.field] == null ? item[v.field] : categoryIndex[v.field][item[v.field]]
     })
+    return {
+      name: itemName || name,
+      value: value
+    }
   })
   return _.merge({
     yAxisIndex: yVision.option && yVision.option.index || 0,

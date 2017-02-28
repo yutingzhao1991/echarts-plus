@@ -19,6 +19,7 @@ module.exports = function build (data, config, extOption) {
   // 初始化视觉通道所需要的配置
   // 参考g2的coord坐标系定义 https://antv.alipay.com/g2/doc/tutorial/start/coord.html
   var opt
+  extOption = extOption || config.extOption
   if (config.coord == 'rect') {
     opt = rectCoord.buildOption(data, config)
   } else if (config.coord == 'polar') {
