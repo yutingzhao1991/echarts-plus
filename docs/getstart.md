@@ -47,7 +47,7 @@ var option = {
 myChart.setOption(option)
 ```
 
-[Live demo](./examples/getstart/echarts.html)
+[Live demo](http://yutingzhao.com/echarts-plus/examples/getstart/echarts.html)
 
 **Use EchartsPlus**
 
@@ -67,7 +67,7 @@ new EChartsPlus(data, {
 }).renderTo('main')
 ```
 
-[Live demo](./examples/getstart/echarts-plus.html)
+[Live demo](http://yutingzhao.com/echarts-plus/examples/getstart/echarts-plus.html)
 
 相比echarts，echarts-plus的配置变得更加简单。
 
