@@ -1,3 +1,5 @@
+## Table Of Content
+
 - [GET START](getstart.md)
 - [API](api.md)
 - [Examples](examples.md)
@@ -7,3 +9,4 @@
   - [map](map.md)
 - [Github](https://github.com/yutingzhao1991/echarts-plus)
 - [NPM](https://www.npmjs.com/package/echarts-plus)
+- [About Author](https://yutingzhao.com)

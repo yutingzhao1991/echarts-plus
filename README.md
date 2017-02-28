@@ -2,7 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 
-A visualization grammar extension for Echarts to make it more powerful. 
+A visualization grammar extension for [Echarts](http://echarts.baidu.com/) to make it more powerful. 
 
 ## Why use echarts-plus?
 
