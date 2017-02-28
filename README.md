@@ -1,42 +1,62 @@
 # echarts-plus
+
+[![NPM version][npm-image]][npm-url]
+
 A visualization grammar extension for Echarts to make it more powerful. 
 
-## Why use echarts plus?
+## Why use echarts-plus?
 
-Echarts is awsome, but echarts option design come from charts self. Build echarts option from data is unhandy. echarts-plus use a [vega](https://github.com/vega/vega)-like visualization grammar to build echarts option. It make us build echarts option from data become quick and more effective.
+Echarts is awsome, but echarts option by designed come from charts itself. Build echarts option from data is unhandy. echarts-plus use a [vega](https://github.com/vega/vega)-like visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
 
-## Get Start
+## Quick Start
 
-```sh
-npm install echarts-plus # or import the builded js in your html.
-```
+Simple demo code:
 
-```js
-new EChartsPlus([{
-  dt: '2016-01-01',
-  value: 21323
-}, {
-  dt: '2016-01-02',
-  value: 16528
-}, {
-  dt: '2016-01-03',
-  value: 16028
-}], {
-  coord: 'rect',
-  visions: [{
-    channel: 'y',
-    field: 'value'
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus rect</title>
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <script src="../../dist/echarts-plus.js"></script>
+  <script>
+  new EChartsPlus([{
+    dt: '2016-01-01',
+    value: 21323
   }, {
-    channel: 'x',
-    field: 'dt'
-  }],
-  custom: {
-    title: {
-      text: '直角坐标系demo'
+    dt: '2016-01-02',
+    value: 16528
+  }, {
+    dt: '2016-01-03',
+    value: 16028
+  }], {
+    coord: 'rect',
+    visions: [{
+      channel: 'y',
+      field: 'value'
+    }, {
+      channel: 'x',
+      field: 'dt'
+    }],
+    extOption: {
+      title: {
+        text: '直角坐标系demo'
+      }
     }
-  }
-}).renderTo('main')
+  }).renderTo('main')
+  </script>
+</body>
+</html>
 ```
+
+Then you will get:
+
+![demo](http://yutingzhao.com/echarts-plus/images/demo.png])
+
+[Live Demo](http://yutingzhao.com/echarts-plus/examples/rect/index.html)
 
 When you need write a echarts-plus option, you only need follow next steps:
 
@@ -58,3 +78,12 @@ When you need write a echarts-plus option, you only need follow next steps:
 
 - [http://yutingzhao.com/echarts-plus](http://yutingzhao.com/echarts-plus)
 
+License
+---
+
+[![License][license-image]][license-url]
+
+[npm-image]: https://img.shields.io/npm/v/echarts-plus.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/echarts-plus
+[license-image]: http://img.shields.io/npm/l/polymer-ext.svg?style=flat-square
+[license-url]: #

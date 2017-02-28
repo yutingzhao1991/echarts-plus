@@ -2,6 +2,9 @@
 ```js
 { // 对应type的可视化图表的类型，这里是type==common时的示例
   coord: 'rect', // 使用的坐标系，reat-直角坐标系，polar-极坐标系
+  coordConfig: {
+    legendTarget: 'y' // y| legend | null  当有legend且存在多个y通道时，可以通过该配置指定图表中的legend用于切换y还是legend细分。当为空时图表中的legend为 legend:y
+  },
   visions: [{ // 视觉通道配置，关联数据的列和可视化图表中的视觉通道
     channel: 'y', // y通道，代表y轴坐标所对应的数据属性，y通道可以有多个
     field: 'ad_inventory', // 这里意思是y轴对应展示数据中的ad_inventory
