@@ -1,12 +1,13 @@
 /**
  * 构建极坐标系的option
  */
-var defaultTranslator = require('./utils').defaultTranslator
+import { filter } from 'lodash'
+import { defaultTranslator } from './utils'
 
-exports.buildOption = function (data, config) {
+export default function buildOption (data, config) {
   // 极坐标系，用于饼图
-  var yVision = _.filter(config.visions, { channel: 'y' })
-  var xVision = _.filter(config.visions, { channel: 'x' })
+  var yVision = filter(config.visions, { channel: 'y' })
+  var xVision = filter(config.visions, { channel: 'x' })
   var translator = config.translator || defaultTranslator // 用来翻译字段
   if (xVision.length > 1) {
     console.warn('there are more then one only one x channel exsit.')

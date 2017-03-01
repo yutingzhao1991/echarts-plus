@@ -1,19 +1,21 @@
 /**
  * 构建直角坐标系的option
  */
-var utils = require('./utils')
+import { filter, chain, assign, find, merge } from 'lodash'
+import utils from './utils'
+
 var visionsOrder = {
   x: 0,
   y: 1,
   size: 2
 }
 
-exports.buildOption = function (data, config) {
+export default function buildOption (data, config) {
   // 直角坐标系
   // 折线图，柱状图，气泡图等都属于该类坐标系，需要添加直角坐标轴
   var categoryIndex = {} // x轴分类索引，用于构建series数据的时候查找位置
-  var yVision = _.filter(config.visions, { channel: 'y' })
-  var xVision = _.filter(config.visions, { channel: 'x' })
+  var yVision = filter(config.visions, { channel: 'y' })
+  var xVision = filter(config.visions, { channel: 'x' })
   var translator = config.translator || utils.defaultTranslator // 用来翻译字段
   var opt = {}
   if (xVision.length > 1) {
@@ -28,7 +30,7 @@ exports.buildOption = function (data, config) {
     var ret = {
       type: type
     }
-    var categories = _.chain(data).uniqBy(v.field).sortBy(v.field).value()
+    var categories = chain(data).uniqBy(v.field).sortBy(v.field).value()
     var categoriesXIndex = {}
     var categoriesXName = []
     categories.forEach(function (c, index) {
@@ -39,9 +41,9 @@ exports.buildOption = function (data, config) {
     if (type == 'category') {
       ret.data = categoriesXName
     }
-    return _.assign(ret, v.option && v.option.xAxis)
+    return assign(ret, v.option && v.option.xAxis)
   })
-  opt.yAxis = _.chain(yVision).uniqBy((v) => {
+  opt.yAxis = chain(yVision).uniqBy((v) => {
     return v.option && v.option.index || 0
   }).map((v) => {
     var yAxisOpt = {
@@ -54,12 +56,12 @@ exports.buildOption = function (data, config) {
         }
       }
     }
-    return _.assign(yAxisOpt, v.option && v.option.yAxis)
+    return assign(yAxisOpt, v.option && v.option.yAxis)
   }).value()
 
   // 按照配置将数据的数据属性映射到不同的视觉通道上
   // 按照legend构建series数据
-  var legendVision = _.find(config.visions, { channel: 'legend' })
+  var legendVision = find(config.visions, { channel: 'legend' })
   var legendField, legendTarget
   if (legendVision) {
     legendField = legendVision.field
@@ -73,7 +75,7 @@ exports.buildOption = function (data, config) {
   
   if (legendField) {
     utils.resetColor()
-    series = _.chain(data).groupBy(legendField).map((group, legend) => {
+    series = chain(data).groupBy(legendField).map((group, legend) => {
       var name = translator(legendField, legend, group[0])
       if (yVision.length > 1) {
         // 当有多个指标（yVision）时，每个legend为维度+指标。
@@ -120,7 +122,7 @@ exports.buildOption = function (data, config) {
   }
   opt.legend = {
     show: true,
-    data: _.chain(series).map((s) => {
+    data: chain(series).map((s) => {
       return s.name
     }).uniq().value()
   }
@@ -131,7 +133,7 @@ exports.buildOption = function (data, config) {
 function generateRectSeries (params) {
   var { data, visions, yVision, categoryIndex, name, color, itemName } = params
   var list = []
-  visions = _.chain(visions).filter((v) => {
+  visions = chain(visions).filter((v) => {
     return v.channel !== 'legend' && v.channel !== 'y'
   }).push(yVision).sortBy((item) => {
     return visionsOrder[item.field]
@@ -146,7 +148,7 @@ function generateRectSeries (params) {
       value: value
     }
   })
-  return _.merge({
+  return merge({
     yAxisIndex: yVision.option && yVision.option.index || 0,
     name: name || (yVision.option && yVision.option.name || yVision.field),
     type: 'bar', // 可能会被yVision.option.series.type覆盖

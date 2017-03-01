@@ -1,6 +1,5 @@
-var echarts = require('echarts')
-var transfer = require('./transfer')
-var lodash = require('lodash')
+import echarts from 'echarts'
+import transfer from './transfer'
 
 class EChartsPlus {
 
@@ -49,8 +48,7 @@ class EChartsPlus {
   }
 }
 
-window.EChartsPlus = window.EChartsPlus || EChartsPlus
-window.echarts = window.echarts || echarts
-window._ = window._ || lodash
+global.EChartsPlus = global.EChartsPlus || EChartsPlus
+global.echarts = global.echarts || echarts
 
 export default EChartsPlus

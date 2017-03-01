@@ -1,12 +1,13 @@
 {
   "name": "echarts-plus",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A visualization grammar extension for Echarts to make it more powerful.",
   "main": "dist/echarts-plus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --watch",
-    "build": "webpack",
+    "build": "webpack --optimize-minimize",
+    "release": "webpack --optimize-minimize && npm publish --registry https://registry.npmjs.org/",
     "book": "cd docs && sh deploy.sh"
   },
   "repository": {
@@ -27,7 +28,9 @@
     "echarts": "^3.4.0"
   },
   "devDependencies": {
+    "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
     "webpack": "^2.2.1"
   }
 }
