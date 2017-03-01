@@ -52,3 +52,5 @@ global.EChartsPlus = global.EChartsPlus || EChartsPlus
 global.echarts = global.echarts || echarts
 
 export default EChartsPlus
+
+module.exports = exports['default']

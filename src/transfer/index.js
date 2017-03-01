@@ -1,6 +1,5 @@
 /**
  * 通用图表，用于描述最常规的可视化图表
- * @module clib/sombra/builders/common
  */
 import { merge } from 'lodash'
 import rectCoord from './rect' // 直角坐标系
@@ -44,3 +43,5 @@ export default function build (data, config, extOption) {
   }
   return opt
 }
+
+module.exports = exports['default']
