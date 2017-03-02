@@ -13,25 +13,39 @@
   <script id="code">
   new EChartsPlus([{
     dt: '2016-01-01',
-    value: 21323
+    value: 21323,
+    size: 12
   }, {
     dt: '2016-01-02',
-    value: 16528
+    value: 16528,
+    size: 20
   }, {
     dt: '2016-01-03',
-    value: 16028
+    value: 16028,
+    size: 55
   }], {
     coord: 'rect',
     visions: [{
       channel: 'y',
-      field: 'value'
+      field: 'value',
+      option: {
+        series: {
+          type: 'scatter',
+          symbolSize: function (data) {
+            return data[2]
+          }
+        }
+      }
     }, {
       channel: 'x',
       field: 'dt'
+    }, {
+      channel: 'size',
+      field: 'size'
     }],
     extOption: {
       title: {
-        text: '直角坐标系demo'
+        text: '散点图'
       }
     }
   }).renderTo('main')

@@ -136,7 +136,7 @@ function generateRectSeries (params) {
   visions = chain(visions).filter((v) => {
     return v.channel !== 'legend' && v.channel !== 'y'
   }).push(yVision).sortBy((item) => {
-    return visionsOrder[item.field]
+    return visionsOrder[item.channel]
   }).value()
   list = data.map((item) => {
     var value = visions.map((v) => {
