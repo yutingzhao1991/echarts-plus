@@ -10,37 +10,29 @@
   <hr>
   <pre id="src"></pre>
   <script src="../../dist/echarts-plus.js"></script>
+  <script src="../china.js"></script>
   <script id="code">
   new EChartsPlus([{
-    dt: '2016-01-01',
-    value: 21323,
-    size: 12
+    province: '广东',
+    value: 21323
   }, {
-    dt: '2016-01-02',
-    value: 16528,
-    size: 20
+    province: '北京',
+    value: 16528
   }, {
-    dt: '2016-01-03',
-    value: 16028,
-    size: 55
+    province: '贵州',
+    value: 16028
   }], {
-    coord: 'rect',
+    coord: 'map',
     series: [{
-      type: 'scatter',
       visions: [{
-        channel: 'y',
+        channel: 'name',
+        field: 'province'
+      }, {
+        channel: 'color',
         field: 'value'
-      }, {
-        channel: 'x',
-        field: 'dt'
-      }, {
-        channel: 'size',
-        field: 'size'
       }],
       option: {
-        symbolSize: function (data) {
-          return data[2]
-        }
+        name: '值'
       }
     }]
   }).renderTo('main')

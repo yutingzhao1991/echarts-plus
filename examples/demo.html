@@ -22,14 +22,17 @@
     value: 16028
   }], {
     coord: 'rect',
-    visions: [{
-      channel: 'y',
-      field: 'value'
-    }, {
-      channel: 'x',
-      field: 'dt'
+    series: [{
+      type: 'bar',
+      visions: [{
+        channel: 'y',
+        field: 'value'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }]
     }],
-    extOption: {
+    option: {
       title: {
         text: '直角坐标系demo'
       }
