@@ -101,7 +101,19 @@ function generateCategoryInfo (data, config, channel) {
   if (!_.isArray(axis)) {
     axis = [axis]
   }
-  var visions = _.chain(config.series).map('visions').flatten().filter({ channel: channel }).value()
+  var visions = _.chain(config.series).map((s) => {
+    var axisVisions = _.chain(s.visions).filter({ channel: channel }).map((v) => {
+      return {
+        option: s.option,
+        field: v.field,
+        channel: v.channel // x or y
+      }
+    }).value()
+    if (axisVisions.length > 1) {
+      console.warn('series has more then one x(y)Axis')
+    }
+    return axisVisions
+  }).flatten().value()
   visions.forEach((v) => {
     var axisIndex = (v.option && v.option[channel + 'AxisIndex']) || 0
     axis[axisIndex] = axis[axisIndex] || {
@@ -166,7 +178,11 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       }
     })
     s.type = sConfig.type || seriesType[config.coord]
-    s = _.merge(s, sConfig.option)
+    var sOption = sConfig.option
+    if (typeof sOption === 'function') {
+      sOption = sOption(sConfig)
+    }
+    s = _.merge(s, sOption)
     s = _.merge(s, getSeriesDefaultOption(s.type))
     return s
   }).value()
@@ -178,7 +194,7 @@ function getSeriesDefaultOption (type) {
 }
 
 function defaultItemTranslator (item) {
-  return item.name || null
+  return null
 }
 
 function defaultValueTranslator (field, value, item) {

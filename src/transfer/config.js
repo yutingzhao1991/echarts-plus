@@ -1,3 +1,7 @@
+//
+// config
+//
+
 export const coordOption = {
   rect: {
   },
@@ -14,9 +18,19 @@ export const seriesType = {
 export const visionsOrder = {
   x: 0,
   y: 1,
-  angle: 0,
-  symbolSize: 2,
-  color: 3,
+
+  radius: 0,
+  angle: 1,
+  
+  symbol: 2,
+  symbolSize: 3,
+  color: 4,
+  colorAlpha: 5,
+  opacity: 6,
+  colorLightness: 7,
+  colorSaturation: 8,
+  colorHue: 9,
+
   name: -1
 }
 

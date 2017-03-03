@@ -10,6 +10,7 @@ npm install echarts-plus
 
 ```js
 var EChartsPlus = require('ecahrts-plus')
+// You code here
 ```
 
 ## Simple Install
@@ -23,7 +24,10 @@ var EChartsPlus = require('ecahrts-plus')
   <script src="https://raw.githubusercontent.com/yutingzhao1991/echarts-plus/master/dist/echarts-plus-all.js"></script>
 </head>
 <body>
-  <p>TODO</p>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <script>
+  new EChartsPlus() // your code here
+  </script>
 </body>
 </html>
 ```

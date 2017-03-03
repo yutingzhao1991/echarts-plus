@@ -6,9 +6,9 @@ A visualization grammar extension for [Echarts](http://echarts.baidu.com/) to ma
 
 ## Why use echarts-plus?
 
-Echarts is awsome, but echarts option by designed come from charts itself. Build echarts option from data is unhandy. echarts-plus use a [vega](https://github.com/vega/vega)-like visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
+Echarts is awsome, but echarts option by designed come from charts itself. Build echarts option from data is unhandy. echarts-plus use a visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
 
-Echarts 很强大，但是它的配置的设计是从图表本身的角度出发的。所以会导致从数据构建到 echarts 的配置变得很不友好。echarts-plus 从数据可视化本身出发，通过类似[vega](https://github.com/vega/vega)的一套可视化语法来让创建echarts图表配置变得更高效。
+Echarts 很强大，但是它的配置的设计是从图表本身的角度出发的。所以会导致从数据构建到 echarts 的配置变得很不友好。echarts-plus 从数据可视化本身出发，通过一套可视化语法来让创建echarts图表配置变得更高效。
 
 ## Quick Start
 
@@ -16,19 +16,16 @@ Simple demo code:
 
 ```html
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>echarts-plus demo</title>
-  <link rel="stylesheet" href="../highlight.css">
+  <link rel="stylesheet" href="highlight.css">
 </head>
 <body>
   <div id="main" style="width:800px;height:400px;"></div>
-  <hr>
-  <pre id="src"></pre>
-  <script src="../../dist/echarts-plus-all.js"></script>
-  <script id="code">
+  <script src="../dist/echarts-plus-all.js"></script>
+  <script>
   new EChartsPlus([{
     dt: '2016-01-01',
     value: 21323
@@ -48,25 +45,15 @@ Simple demo code:
       }, {
         channel: 'x',
         field: 'dt'
-      }],
-      option: {
-        name: '值'
-      }
+      }]
     }],
-    legendTarget: 'series',
     option: {
       title: {
         text: '直角坐标系demo'
-      },
-      tooltip: {
-        show: true
       }
     }
   }).renderTo('main')
   </script>
-  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
-  <script src="../ext.js"></script>
 </body>
 </html>
 ```
