@@ -1,11 +1,14 @@
 var path = require('path')
 
 module.exports = {
-  entry: './src/echarts-plus.js',
+  entry: {
+    'echarts-plus': './src/echarts-plus.js'
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'echarts-plus.js'
+    filename: '[name].js'
   },
+  devtool: process.env.NODE_ENV == 'dev' ? 'cheap-module-source-map' : 'source-map',
   module: {
     loaders: [
       {
@@ -17,5 +20,13 @@ module.exports = {
         }
       }
     ]
+  },
+  externals : {
+    lodash: {
+      commonjs: 'lodash',
+      amd: 'lodash',
+      root: '_'
+    },
+    echarts: 'echarts'
   }
 }

@@ -27,7 +27,7 @@ Simple demo code:
   <div id="main" style="width:800px;height:400px;"></div>
   <hr>
   <pre id="src"></pre>
-  <script src="../../dist/echarts-plus.js"></script>
+  <script src="../../dist/echarts-plus-all.js"></script>
   <script id="code">
   new EChartsPlus([{
     dt: '2016-01-01',

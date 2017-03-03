@@ -38,6 +38,14 @@ chart.setOption({
 
 More option detail find in [coord](rect.md) option detail.
 
+### buildOption
+
+静态方法
+
+```js
+EChartsPlus.buildOption([], {})
+```
+
 ### renderTo
 
 ```

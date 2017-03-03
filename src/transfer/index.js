@@ -6,6 +6,10 @@ import _ from 'lodash'
 import { coordOption, visionsOrder, seriesOption, seriesType, visualRange } from './config'
 
 export default function build (data, config) {
+  // 没有找到坐标系，默认为是ECharts的Option
+  if (config.coord == null) {
+    return config
+  }
   var opt = {}
   // 初始化类目轴相关配置信息
   // categoryInfo like this:

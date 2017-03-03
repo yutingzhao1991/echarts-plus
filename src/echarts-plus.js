@@ -19,14 +19,13 @@ class EChartsPlus {
   setOption (option) {
     this._option = option
     if (this.echarts) {
-      if (this._option.coord == null) {
-        this._echartsOption = this._option
-      } else {
-        this._echartsOption = transfer(this._data, this._option)
-      }
-      console.log(this._echartsOption)
+      this._echartsOption = transfer(this._data, this._option)
       this.echarts.setOption(this._echartsOption)
     }
+  }
+
+  static buildOption (data, option) {
+    return transfer(data, option)
   }
 
   renderTo (ele) {
