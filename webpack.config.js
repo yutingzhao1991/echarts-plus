@@ -5,6 +5,7 @@ module.exports = {
     'echarts-plus': './src/echarts-plus.js'
   },
   output: {
+    libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
@@ -23,10 +24,16 @@ module.exports = {
   },
   externals : {
     lodash: {
+      root: '_',
+      commonjs2: 'lodash',
       commonjs: 'lodash',
-      amd: 'lodash',
-      root: '_'
+      amd: 'lodash'
     },
-    echarts: 'echarts'
+    echarts: {
+      root: 'echarts',
+      commonjs2: 'echarts',
+      commonjs: 'echarts',
+      amd: 'echarts'
+    }
   }
 }

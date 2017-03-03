@@ -1,5 +1,6 @@
 ## Table Of Content
 
+- [Install](install.md)
 - [GET START](getstart.md)
 - [API](api.md)
 - [OPTION](option.md)
