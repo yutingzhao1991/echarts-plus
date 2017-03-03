@@ -15,7 +15,7 @@ export const visionsOrder = {
   x: 0,
   y: 1,
   angle: 0,
-  size: 2,
+  symbolSize: 2,
   color: 3,
   name: -1
 }
@@ -26,4 +26,8 @@ export const seriesOption = {
   map: {
     mapType: 'china'
   }
+}
+
+export const visualRange = {
+  symbolSize: [10, 80]
 }

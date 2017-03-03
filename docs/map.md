@@ -2,20 +2,5 @@
 
 **视觉通道**
 
-- x
-- y
-
-**option**
-
-```js
-{
-  coord: 'map',
-  visions: [{
-    channel: 'x',
-    field: 'province'
-  }, {
-    channel: 'y',
-    field: 'value'
-  }]
-}
-```
+- name *ECharts的地图通过name来作为位置的标记*
+- color

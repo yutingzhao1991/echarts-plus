@@ -54,16 +54,17 @@ myChart.setOption(option)
 ```js
 new EChartsPlus(data, {
   coord: 'rect',
-  visions: [{
-    channel: 'y',
-    field: 'revenue'
-  }, {
-    channel: 'legend',
-    field: 'platform'
-  }, {
-    channel: 'x',
-    field: 'dt'
-  }]
+  series: [{
+    visions: [{
+      channel: 'y',
+      field: 'revenue'
+    }, {
+      channel: 'x',
+      field: 'dt'
+    }],
+    generator: 'platform'
+  }],
+  legendTarget: 'series'
 }).renderTo('main')
 ```
 

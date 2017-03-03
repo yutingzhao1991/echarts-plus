@@ -28103,10 +28103,12 @@ var _config = __webpack_require__(136);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/**
- * EChartsPlus option transfer
- * 将 EChartsPlus 的配置转化为 ECharts 的配置
- */
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } /**
+                                                                                                                                                                                                                   * EChartsPlus option transfer
+                                                                                                                                                                                                                   * 将 EChartsPlus 的配置转化为 ECharts 的配置
+                                                                                                                                                                                                                   */
+
+
 function build(data, config) {
   var opt = {};
   // 初始化类目轴相关配置信息
@@ -28145,23 +28147,35 @@ function build(data, config) {
   }
 
   // 生成 visualMap
-  // TODO
-  var colorVision = _lodash2.default.chain(config.series).map('visions').flatten().find({ channel: 'color' }).value();
-  if (colorVision) {
-    opt.visualMap = {
-      min: _lodash2.default.minBy(data, colorVision.field)[colorVision.field],
-      max: _lodash2.default.maxBy(data, colorVision.field)[colorVision.field],
-      left: 'left',
-      top: 'bottom',
-      text: ['高', '低'],
-      calculable: true
-    };
+  var visaulVisions = _lodash2.default.chain(config.series).map('visions').flatten().filter(function (v) {
+    return _config.visionsOrder[v.channel] >= 2;
+  }).value();
+  if (visaulVisions.length > 0) {
+    opt.visualMap = generateVisualMap(data, config, visaulVisions);
   }
 
   // 合并默认配置
   opt = _lodash2.default.merge(opt, _config.coordOption[config.coord]);
   opt = _lodash2.default.merge(opt, config.option);
   return opt;
+}
+
+function generateVisualMap(data, config, visions) {
+  return visions.map(function (v) {
+    var min = _lodash2.default.minBy(data, v.field)[v.field];
+    var max = _lodash2.default.maxBy(data, v.field)[v.field];
+    var range;
+    if (_config.visualRange[v.channel]) {
+      range = _defineProperty({}, v.channel, _config.visualRange[v.channel]);
+    }
+    return {
+      min: min,
+      max: max,
+      show: config.coord === 'map',
+      inRange: range,
+      calculable: true
+    };
+  });
 }
 
 function generateCategoryInfo(data, config, channel) {
@@ -28230,7 +28244,6 @@ function generateSeries(data, config, seriesConfig, categoryIndexMap) {
       return _config.visionsOrder[a.channel] - _config.visionsOrder[b.channel];
     }).value();
     var nameVision = _lodash2.default.find(sConfig.visions, { channel: 'name' });
-    console.log(sConfig.visions, nameVision);
     var s = {};
     s.name = sConfig.name || sConfig.option && sConfig.option.name;
     s.data = data.map(function (item) {
@@ -28357,7 +28370,7 @@ var visionsOrder = exports.visionsOrder = {
   x: 0,
   y: 1,
   angle: 0,
-  size: 2,
+  symbolSize: 2,
   color: 3,
   name: -1
 };
@@ -28367,6 +28380,10 @@ var seriesOption = exports.seriesOption = {
   map: {
     mapType: 'china'
   }
+};
+
+var visualRange = exports.visualRange = {
+  symbolSize: [10, 80]
 };
 
 /***/ }),

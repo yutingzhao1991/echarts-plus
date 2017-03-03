@@ -25,13 +25,14 @@ chart.setData([])
 ```
 chart.setOption({
   coord: 'rect', when coord == null, echarts-plus use option as echart option.
-  coordConfig: { /* ... */ }, // 坐标系配置
-  visions: [{
-    channel: 'xxx', // 映射的视觉通道，不同的坐标系支持不同的视觉通道
-    field: 'xxx', // 映射到视觉通道上的数据属性
-    option: { /* ... */ } // 视觉通道的配置，不同的坐标系支持的视觉通道不同，对应的配置也不同
-  }],
-  extOption: { /* ... */ } // 自定义的echarts配置
+  series: [{
+    visions: [{
+      channel: 'xxx', // 映射的视觉通道，不同的坐标系支持不同的视觉通道
+      field: 'xxx', // 映射到视觉通道上的数据属性
+      option: { /* ... */ } // 视觉通道的配置，不同的坐标系支持的视觉通道不同，对应的配置也不同
+    }]
+  }]
+  option: { /* ... */ } // 自定义的echarts配置
 })
 ```
 

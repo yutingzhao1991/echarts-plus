@@ -16,15 +16,19 @@ Simple demo code:
 
 ```html
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>echarts-plus rect</title>
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
 </head>
 <body>
   <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
   <script src="../../dist/echarts-plus.js"></script>
-  <script>
+  <script id="code">
   new EChartsPlus([{
     dt: '2016-01-01',
     value: 21323
@@ -36,20 +40,33 @@ Simple demo code:
     value: 16028
   }], {
     coord: 'rect',
-    visions: [{
-      channel: 'y',
-      field: 'value'
-    }, {
-      channel: 'x',
-      field: 'dt'
+    series: [{
+      type: 'bar',
+      visions: [{
+        channel: 'y',
+        field: 'value'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }],
+      option: {
+        name: '值'
+      }
     }],
-    extOption: {
+    legendTarget: 'series',
+    option: {
       title: {
         text: '直角坐标系demo'
+      },
+      tooltip: {
+        show: true
       }
     }
   }).renderTo('main')
   </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
 </body>
 </html>
 ```

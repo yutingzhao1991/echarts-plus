@@ -3,7 +3,7 @@
  * 将 EChartsPlus 的配置转化为 ECharts 的配置
  */
 import _ from 'lodash'
-import { coordOption, visionsOrder, seriesOption, seriesType } from './config'
+import { coordOption, visionsOrder, seriesOption, seriesType, visualRange } from './config'
 
 export default function build (data, config) {
   var opt = {}
@@ -43,23 +43,37 @@ export default function build (data, config) {
   }
 
   // 生成 visualMap
-  // TODO
-  var colorVision = _.chain(config.series).map('visions').flatten().find({ channel: 'color' }).value()
-  if (colorVision) {
-    opt.visualMap = {
-      min: _.minBy(data, colorVision.field)[colorVision.field],
-      max: _.maxBy(data, colorVision.field)[colorVision.field],
-      left: 'left',
-      top: 'bottom',
-      text: ['高','低'],
-      calculable: true
-    }
+  var visaulVisions = _.chain(config.series).map('visions').flatten().filter((v) => {
+    return visionsOrder[v.channel] >= 2
+  }).value()
+  if (visaulVisions.length > 0) {
+    opt.visualMap = generateVisualMap(data, config, visaulVisions)
   }
 
   // 合并默认配置
   opt = _.merge(opt, coordOption[config.coord])
   opt = _.merge(opt, config.option)
   return opt
+}
+
+function generateVisualMap (data, config, visions) {
+  return visions.map((v) => {
+    var min = _.minBy(data, v.field)[v.field]
+    var max = _.maxBy(data, v.field)[v.field]
+    var range
+    if (visualRange[v.channel]) {
+      range = {
+        [v.channel]: visualRange[v.channel]
+      }
+    }
+    return {
+      min: min,
+      max: max,
+      show: config.coord === 'map',
+      inRange: range,
+      calculable: true
+    }
+  })
 }
 
 function generateCategoryInfo (data, config, channel) {
@@ -128,7 +142,6 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       return visionsOrder[a.channel] - visionsOrder[b.channel]
     }).value()
     var nameVision = _.find(sConfig.visions, { channel: 'name' })
-    console.log(sConfig.visions, nameVision)
     var s = {}
     s.name = sConfig.name || (sConfig.option && sConfig.option.name)
     s.data = data.map((item) => {
