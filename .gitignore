@@ -2,3 +2,4 @@ node_modules/
 *.log
 _README.md
 docs/_book/
+.DS_Store

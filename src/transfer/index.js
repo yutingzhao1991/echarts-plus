@@ -56,8 +56,19 @@ export default function build (data, config) {
 
   // 合并默认配置
   opt = _.merge(opt, coordOption[config.coord])
-  opt = _.merge(opt, config.option)
+  opt = _.merge(opt, generateUserOption(config.option))
   return opt
+}
+
+function generateUserOption (option) {
+  var userOption = _.assign({}, option)
+  if (userOption.yAxis && !_.isArray(userOption.yAxis)) {
+    userOption.yAxis = [userOption.yAxis]
+  }
+  if (userOption.xAxis && !_.isArray(userOption.xAxis)) {
+    userOption.xAxis = [userOption.xAxis]
+  }
+  return userOption
 }
 
 function generateVisualMap (data, config, visions) {
@@ -96,7 +107,6 @@ function generateCategoryInfo (data, config, channel) {
   var indexMap = {}
   var valueTranslator = config.valueTranslator || defaultValueTranslator
 
-  var userOption = config.option || {}
   var axis = config[channel + 'Axis'] || []
   if (!_.isArray(axis)) {
     axis = [axis]
@@ -145,7 +155,8 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       // 需要循环生成多个series
       return _.chain(data).groupBy(sConfig.generator).map((group, key) => {
         var subConfig = {
-          name: valueTranslator(sConfig.generator, key, group[0])
+          name: valueTranslator(sConfig.generator, key, group[0]),
+          _plus_name: key
         }
         _.assign(subConfig, sConfig)
         subConfig.generator = null
@@ -180,7 +191,7 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
     s.type = sConfig.type || seriesType[config.coord]
     var sOption = sConfig.option
     if (typeof sOption === 'function') {
-      sOption = sOption(sConfig)
+      sOption = sOption(sConfig, sConfig._plus_name)
     }
     s = _.merge(s, sOption)
     s = _.merge(s, getSeriesDefaultOption(s.type))

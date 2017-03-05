@@ -6,7 +6,7 @@ A visualization grammar extension for [Echarts](http://echarts.baidu.com/) to ma
 
 ## Why use echarts-plus?
 
-Echarts is awsome, but echarts option by designed come from charts itself. Build echarts option from data is unhandy. echarts-plus use a visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
+Echarts is awsome, but build echarts series option is annoying. echarts-plus use a visualization grammar to build echarts option. It let you build echarts option from data become quick and more effective.
 
 Echarts 很强大，但是它的配置的设计是从图表本身的角度出发的。所以会导致从数据构建到 echarts 的配置变得很不友好。echarts-plus 从数据可视化本身出发，通过一套可视化语法来让创建echarts图表配置变得更高效。
 

@@ -17,12 +17,19 @@
       field: 'dt'
     }],
     option: { // series的配置，同ECharts：http://echarts.baidu.com/option.html#series
-      // 可以是一个Function，echarts-plus会执行它并传入series的配置，当存在generator的时候可以通过它获得灵活的option配置
-      name: '值'
+      // 可以是一个Function，echarts-plus会执行它并传入series的配置，当存在generator的时候通过generator生成的分组的值，第二个参数是可以通过它获得灵活的option配置
+      name: '值' // legend==series时是使用series的name来对应legend的，可以通过设置该值来调整legend对应的系列
     }
   }],
   legendTarget: 'series', // legend对应切换的对象，可选 series | item，默认为空不显示legend，item仅对极坐标(polar)有效
-  option: { // 同ECharts的配置：http://echarts.baidu.com/option.html，会覆盖掉EChartsPlus默认生成的配置
+  option: { // 同ECharts的配置：http://echarts.baidu.com/option.html，会覆盖掉EChartsPlus默认生成的配置。使用 lodash.merge 合并配置。
+    option: {
+      yAxis: [undefined, { // 当需要自定义后面的轴时，前面的填充undefined
+        splitLine: {
+          show: false
+        }
+      }]
+    },
     title: {
       text: '直角坐标系demo'
     },

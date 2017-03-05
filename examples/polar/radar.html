@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <div id="main2" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script id="code">
+  new EChartsPlus([{
+    company: 'baidu',
+    revenue: 100,
+    uv: 65,
+    imp: 100,
+    pv: 80
+  }, {
+    company: 'alibaba',
+    revenue: 90,
+    uv: 100,
+    imp: 50,
+    pv: 89
+  }], {
+    coord: 'polar',
+    series: [{
+      type: 'radar',
+      visions: [{
+        channel: 'angle',
+        field: 'revenue'
+      }, {
+        channel: 'angle',
+        field: 'uv'
+      }, {
+        channel: 'angle',
+        field: 'imp'
+      }, {
+        channel: 'angle',
+        field: 'pv'
+      }],
+      generator: 'company',
+      option: {
+        radius : [20, 110],
+        roseType : 'radius'
+      }
+    }],
+    legendTarget: 'name',
+    option: {
+      radar: {
+        // shape: 'circle',
+        indicator: [
+          { name: '收入', max: 100 },
+          { name: 'UV', max: 100 },
+          { name: '曝光', max: 100 },
+          { name: 'PV', max: 100 }
+        ]
+      },
+      title: {
+        text: '雷达图demo - 使用series generator'
+      },
+      tooltip: {
+        show: true
+      }
+    }
+  }).renderTo('main')
+
+  new EChartsPlus([{
+    company: 'baidu',
+    revenue: 100,
+    uv: 65,
+    imp: 100,
+    pv: 80
+  }, {
+    company: 'alibaba',
+    revenue: 90,
+    uv: 100,
+    imp: 50,
+    pv: 89
+  }], {
+    coord: 'polar',
+    series: [{
+      type: 'radar',
+      visions: [{
+        channel: 'angle',
+        field: 'revenue'
+      }, {
+        channel: 'angle',
+        field: 'uv'
+      }, {
+        channel: 'angle',
+        field: 'imp'
+      }, {
+        channel: 'angle',
+        field: 'pv'
+      }, {
+        channel: 'name',
+        field: 'company'
+      }],
+      option: {
+        radius : [20, 110],
+        roseType : 'radius'
+      }
+    }],
+    legendTarget: 'series',
+    option: {
+      radar: {
+        // shape: 'circle',
+        indicator: [
+          { name: '收入', max: 100 },
+          { name: 'UV', max: 100 },
+          { name: '曝光', max: 100 },
+          { name: 'PV', max: 100 }
+        ]
+      },
+      title: {
+        text: '雷达图demo - 使用 channel name'
+      },
+      tooltip: {
+        show: true
+      }
+    }
+  }).renderTo('main2')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

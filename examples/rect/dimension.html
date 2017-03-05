@@ -40,6 +40,11 @@
       },
       generator: 'platform' // 按照platform分组，每个分组生成一个series
     }],
+    option: {
+      title: {
+        text: '不同的轴显示不同的指标'
+      }
+    },
     legendTarget: 'series'
   }).renderTo('main')
 
@@ -70,6 +75,16 @@
       }],
       generator: 'platform' // 按照platform分组，每个分组生成一个series
     }],
+    option: {
+      title: {
+        text: '指定name来实现legend用于切换指标'
+      },
+      yAxis: {
+        splitLine: {
+          show: false
+        }
+      }
+    },
     legendTarget: 'series'
   }).renderTo('main2')
   </script>
