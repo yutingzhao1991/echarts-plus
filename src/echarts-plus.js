@@ -14,6 +14,7 @@ class EChartsPlus {
   setData (data) {
     this._data = data
     this.setOption(this._option)
+    return this
   }
 
   setOption (option) {
@@ -22,6 +23,7 @@ class EChartsPlus {
       this._echartsOption = transfer(this._data, this._option)
       this.echarts.setOption(this._echartsOption)
     }
+    return this
   }
 
   static buildOption (data, option) {
@@ -41,6 +43,7 @@ class EChartsPlus {
       // generate echartsOption
       this.setOption(this._option)
     }
+    return this
   }
 
   getECharts () {

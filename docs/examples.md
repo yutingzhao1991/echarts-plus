@@ -5,6 +5,7 @@
 - [使用generator生成多个指标且有细分的折线图](examples/rect/dimension.html)
 - [通过自定义series option实现上有细分且多指标的图中同一细分的series颜色相同](examples/rect/option.html)
 - [多个y轴的例子](examples/rect/axis.html)
+- [动态数据 + 时间坐标轴](examples/rect/time.html)
 - [散点图](examples/rect/scatter.html)
 - [地图](examples/map/base.html)
 - [饼图](examples/polar/base.html)

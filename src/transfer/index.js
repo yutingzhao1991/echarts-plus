@@ -107,7 +107,7 @@ function generateCategoryInfo (data, config, channel) {
   var indexMap = {}
   var valueTranslator = config.valueTranslator || defaultValueTranslator
 
-  var axis = config[channel + 'Axis'] || []
+  var axis = config.option[channel + 'Axis'] || []
   if (!_.isArray(axis)) {
     axis = [axis]
   }
