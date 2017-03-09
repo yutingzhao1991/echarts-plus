@@ -129,7 +129,7 @@ function generateCategoryInfo (data, config, channel) {
     axis[axisIndex] = axis[axisIndex] || {
       type: channel === 'x' ? 'category' : 'value'
     }
-    axis[axisIndex].type = axis[axisIndex].type || 'category'
+    axis[axisIndex].type = axis[axisIndex].type || channel === 'x' ? 'category' : 'value'
     if (axis[axisIndex].type === 'category') {
       var categories = _.chain(data).uniqBy(v.field).sortBy(v.field).value()
       var categoriesName = []
