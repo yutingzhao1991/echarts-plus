@@ -40,15 +40,22 @@
 }
 ```
 
-目前所有支持的视觉通道和它的级别如下，生成series时会按照它对应的级别排序构造出series的数据。构建默认的visualMap是也是按照该顺序来的，所以你可以参考该优先级来，自定义visualMap从而配置视觉通道。
+EChartsPlus会按照series中的视觉通道的配置生成series的data。数据的值在最终series.data[].value 中的位置通过下面的channelIndex决定。该index同时也是visualMap种的dimension字段。
 
 ```js
-channelCrder = {
+channelIndex = {
   x: 0,
   y: 1,
 
-  radius: 0,
-  angle: 1,
+  angle: 0,
+  angle1: 0,
+  angle2: 1,
+  angle3: 2,
+  angle4: 3,
+  angle5: 4,
+  angle6: 5,
+  angle7: 6,
+  angle8: 7,
   
   symbol: 2,
   symbolSize: 3,
@@ -57,8 +64,42 @@ channelCrder = {
   opacity: 6,
   colorLightness: 7,
   colorSaturation: 8,
-  colorHue: 9,
-
-  name: -1
+  colorHue: 9
 }
 ```
+
+比如说下面这个视觉通道映射的配置：
+```
+visions: [{
+  filed: 'a',
+  channel: 'x'
+}, {
+  filed: 'b',
+  channel: 'y'
+}, {
+  filed: 'c',
+  channel: 'symbolSize'
+}]
+```
+将会把数据
+
+```
+{
+  a: 1,
+  b: 2,
+  c: 3
+}
+```
+转换为series中的一条数据的value
+```
+{
+  value: [1, 2, undefined, 3]
+}
+```
+
+
+
+
+
+
+

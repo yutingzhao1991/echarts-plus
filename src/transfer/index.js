@@ -84,6 +84,7 @@ function generateVisualMap (data, config, visions) {
     return {
       min: min,
       max: max,
+      dimension: visionsOrder[v.channel],
       show: config.coord === 'map',
       inRange: range,
       calculable: true
@@ -170,15 +171,27 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       return visionsOrder[a.channel] - visionsOrder[b.channel]
     }).value()
     var nameVision = _.find(sConfig.visions, { channel: 'name' })
-    var s = {}
+    var s = {
+      // name: 'generator valueTranslator or user option',
+      // data: [{
+      //   name: 'itemTranslator',
+      //   value: [channel_x, channel_y, symbolSize, ....]
+      // }]
+    }
     s.name = sConfig.name || (sConfig.option && sConfig.option.name)
     s.data = data.map((item) => {
-      var value = visions.map((v) => {
-        if (categoryIndexMap[v.field]) {
-          return categoryIndexMap[v.field][item[v.field]]
+      var value = []
+      visions.forEach((v) => {
+        var valueCol
+        if (categoryIndexMap[v.field] && (v.channel === 'x' || v.channel === 'y')) {
+          valueCol = categoryIndexMap[v.field][item[v.field]]
         } else {
-          return item[v.field]
+          valueCol = item[v.field]
         }
+        if (value.length <= visionsOrder[v.channel]) {
+          value.length = visionsOrder[v.channel] + 1
+        }
+        value[visionsOrder[v.channel]] = valueCol
       })
       var name = itemTranslator(item)
       if (name == null && nameVision) {

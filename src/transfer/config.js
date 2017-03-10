@@ -19,8 +19,15 @@ export const visionsOrder = {
   x: 0,
   y: 1,
 
-  radius: 0,
-  angle: 1,
+  angle: 0,
+  angle1: 0,
+  angle2: 1,
+  angle3: 2,
+  angle4: 3,
+  angle5: 4,
+  angle6: 5,
+  angle7: 6,
+  angle8: 7,
   
   symbol: 2,
   symbolSize: 3,
@@ -43,5 +50,7 @@ export const seriesOption = {
 }
 
 export const visualRange = {
-  symbolSize: [10, 80]
+  symbolSize: [10, 80],
+  opacity: [0.3, 1],
+  symbol: ['circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow']
 }

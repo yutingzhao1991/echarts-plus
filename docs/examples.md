@@ -11,3 +11,4 @@
 - [饼图](http://yutingzhao.com/echarts-plus/examples/polar/base.html)
 - [南丁格尔图](http://yutingzhao.com/echarts-plus/examples/polar/radius.html)
 - [雷达图](http://yutingzhao.com/echarts-plus/examples/polar/radar.html)
+- [使用颜色等多个视觉通道](http://yutingzhao.com/echarts-plus/examples/rect/channels.html)
