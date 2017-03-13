@@ -198,7 +198,7 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
         name = valueTranslator(nameVision.field, item[nameVision.field], item)
       }
       return {
-        name: name || s.name,
+        name: name == null ? s.name : name,
         value: value
       }
     })
