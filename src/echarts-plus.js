@@ -21,6 +21,7 @@ class EChartsPlus {
     this._option = option
     if (this.echarts) {
       this._echartsOption = transfer(this._data, this._option)
+      console.log(this._echartsOption)
       this.echarts.setOption(this._echartsOption)
     }
     return this
