@@ -24,13 +24,14 @@
         field: 'dt'
       }],
       option: {
-        smooth: true
+        smooth: true,
+        connectNulls: true
       },
       generator: 'platform' // 按照platform分组，每个分组生成一个series
     }],
     option: {
       tooltip: {
-        trigger: 'item'
+        trigger: 'axis'
       }
     },
     legendTarget: 'series'

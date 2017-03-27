@@ -179,7 +179,8 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       // }]
     }
     s.name = sConfig.name || (sConfig.option && sConfig.option.name)
-    s.data = data.map((item) => {
+    s.data = []
+    data.map((item) => {
       var value = []
       visions.forEach((v) => {
         var valueCol
@@ -197,9 +198,18 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
       if (name == null && nameVision) {
         name = valueTranslator(nameVision.field, item[nameVision.field], item)
       }
-      return {
-        name: name == null ? s.name : name,
-        value: value
+      var xVisions = _.find(visions, { channel: 'x' })
+      if (xVisions && categoryIndexMap[xVisions.field]) {
+        // 如果x轴是类目，那么通过data数组index来对应上数据的x位置
+        s.data[categoryIndexMap[xVisions.field][item[xVisions.field]]] = {
+          name: name == null ? s.name : name,
+          value: value.length === 2 ? value[1] : value // 只有一个类目轴，简化数据
+        }
+      } else {
+        s.data.push({
+          name: name == null ? s.name : name,
+          value: value
+        })
       }
     })
     s.type = sConfig.type || seriesType[config.coord]
