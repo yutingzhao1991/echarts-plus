@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script src="../china.js"></script>
+  <script id="code">
+  new EChartsPlus([{
+    province: '广东',
+    value: 21323
+  }, {
+    province: '北京',
+    value: 16528
+  }, {
+    province: '贵州',
+    value: 16028
+  }], {
+    coord: 'map',
+    series: [{
+      visions: [{
+        channel: 'name',
+        field: 'province'
+      }, {
+        channel: 'color',
+        field: 'value'
+      }],
+      option: {
+        name: '值'
+      }
+    }]
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

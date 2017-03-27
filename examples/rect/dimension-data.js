@@ -1,0 +1,37 @@
+var data = [{
+  dt: '2017-01-01',
+  platform_id: '1',
+  platform: 'PC端',
+  revenue: 160,
+  impression: 2324
+}, {
+  dt: '2017-01-01',
+  platform_id: '2',
+  platform: '移动端',
+  revenue: 120,
+  impression: 1324
+}, {
+  dt: '2017-01-02',
+  platform_id: '1',
+  platform: 'PC端',
+  revenue: 170,
+  impression: 2024
+}, {
+  dt: '2017-01-02',
+  platform_id: '2',
+  platform: '移动端',
+  revenue: 96,
+  impression: 692
+}, {
+  dt: '2017-01-03',
+  platform_id: '1',
+  platform: 'PC端',
+  revenue: 179,
+  impression: 2524
+}, {
+  dt: '2017-01-03',
+  platform_id: '2',
+  platform: '移动端',
+  revenue: 960,
+  impression: 6192
+}]

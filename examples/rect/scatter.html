@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script id="code">
+  new EChartsPlus([{
+    dt: '2016-01-01',
+    value: 21323,
+    size: 12
+  }, {
+    dt: '2016-01-02',
+    value: 16528,
+    size: 20
+  }, {
+    dt: '2016-01-03',
+    value: 16028,
+    size: 55
+  }], {
+    coord: 'rect',
+    series: [{
+      type: 'scatter',
+      visions: [{
+        channel: 'y',
+        field: 'value'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }, {
+        channel: 'symbolSize',
+        field: 'size'
+      }]
+    }]
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

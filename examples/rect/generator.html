@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script src="./data.js"></script>
+  <script id="code">
+  new EChartsPlus(data, {
+    coord: 'rect',
+    series: [{
+      type: 'line',
+      visions: [{
+        channel: 'y',
+        field: 'revenue'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }],
+      option: {
+        smooth: true,
+        connectNulls: true
+      },
+      generator: 'platform' // 按照platform分组，每个分组生成一个series
+    }],
+    option: {
+      tooltip: {
+        trigger: 'axis'
+      }
+    },
+    legendTarget: 'series'
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

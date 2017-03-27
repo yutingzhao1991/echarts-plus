@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script src="./dimension-data.js"></script>
+  <script id="code">
+  new EChartsPlus(data, {
+    coord: 'rect',
+    series: [{
+      type: 'line',
+      name: '收入',
+      visions: [{
+        channel: 'y',
+        field: 'revenue'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }],
+      option: function (vision, generation) {
+        return {
+          lineStyle: {
+            normal: {
+              color: generation === 'PC端' ? 'red' : 'green'
+            }
+          }
+        }
+      },
+      // series没有指定name，将会用generator的field作为series的name
+      generator: 'platform' // 按照platform分组，每个分组生成一个series
+    }, {
+      type: 'line',
+      name: '曝光',
+      visions: [{
+        channel: 'y',
+        field: 'impression'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }],
+      option: function (vision, generation) {
+        return {
+          yAxisIndex: 1,
+          lineStyle: {
+            normal: {
+              color: generation === 'PC端' ? 'red' : 'green',
+              type: 'dashed'
+            }
+          }
+        }
+      },
+      generator: 'platform' // 按照platform分组，每个分组生成一个series
+    }],
+    option: {
+      yAxis: [undefined, {
+        splitLine: {
+          show: false
+        }
+      }]
+    },
+    legendTarget: 'series'
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

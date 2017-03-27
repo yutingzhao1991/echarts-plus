@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script id="code">
+  new EChartsPlus([{
+    dt: '2016-01-01',
+    revenue: 21323,
+    impression: 235698,
+    click: 2342,
+    type: 1
+  }, {
+    dt: '2016-01-02',
+    revenue: 16528,
+    impression: 103598,
+    click: 2842,
+    type: 2
+  }, {
+    dt: '2016-01-03',
+    revenue: 16028,
+    impression: 183598,
+    click: 1342,
+    type: 3
+  }, {
+    dt: '2016-01-04',
+    revenue: 11323,
+    impression: 235698,
+    click: 2342,
+    type: 1
+  }, {
+    dt: '2016-01-05',
+    revenue: 10658,
+    impression: 103598,
+    click: 2842,
+    type: 2
+  }, {
+    dt: '2016-01-06',
+    revenue: 12028,
+    impression: 183598,
+    click: 1342,
+    type: 3
+  }], {
+    coord: 'rect',
+    series: [{
+      type: 'scatter',
+      visions: [{
+        channel: 'y',
+        field: 'revenue'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }, {
+        channel: 'symbol',
+        field: 'type'
+      }, {
+        channel: 'symbolSize',
+        field: 'impression'
+      }, {
+        channel: 'opacity',
+        field: 'click'
+      }, {
+        channel: 'color',
+        field: 'revenue'
+      }, {
+        channel: 'colorAlpha',
+        field: 'impression'
+      }, {
+        channel: 'colorLightness',
+        field: 'revenue'
+      }]
+    }]
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>

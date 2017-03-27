@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <script src="../dist/echarts-plus-all.js"></script>
+  <script>
+  new EChartsPlus([{
+    dt: '2016-01-01',
+    value: 21323
+  }, {
+    dt: '2016-01-02',
+    value: 16528
+  }, {
+    dt: '2016-01-03',
+    value: 16028
+  }], {
+    coord: 'rect',
+    series: [{
+      type: 'bar',
+      visions: [{
+        channel: 'y',
+        field: 'value'
+      }, {
+        channel: 'x',
+        field: 'dt'
+      }]
+    }],
+    option: {
+      title: {
+        text: '直角坐标系demo'
+      }
+    }
+  }).renderTo('main')
+  </script>
+</body>
+</html>

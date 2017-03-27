@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>echarts-plus demo</title>
+  <link rel="stylesheet" href="../highlight.css">
+</head>
+<body>
+  <div id="main" style="width:800px;height:400px;"></div>
+  <hr>
+  <pre id="src"></pre>
+  <script src="../../dist/echarts-plus-all.js"></script>
+  <script id="code">
+  var platforms = {
+    '1': 'PC',
+    '2': 'Mobile'
+  }
+  new EChartsPlus([{
+    platform_id: '2',
+    revenue: 120
+  }, {
+    platform_id: '1',
+    revenue: 170
+  }], {
+    coord: 'rect',
+    series: [{
+      name: '收入',
+      visions: [{
+        channel: 'y',
+        field: 'revenue'
+      }, {
+        channel: 'x',
+        field: 'platform_id'
+      }]
+    }],
+    valueTranslator: function (field, value, item) {
+      if (field === 'platform_id') {
+        return platforms[value]
+      }
+      return value
+    },
+    itemTranslator: function (item) {
+      return platforms[item.platform_id] + '(' + item.platform_id + ')'
+    },
+    option: {
+      tooltip: {
+        show: true,
+        formatter: function (params) {
+          return params.data.name + ':' + params.data.value[1]
+        }
+      }
+    },
+    legendTarget: 'series'
+  }).renderTo('main')
+  </script>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/prettify/r298/prettify.js"></script>
+  <script src="../ext.js"></script>
+</body>
+</html>
