@@ -1,6 +1,6 @@
 {
   "name": "echarts-plus",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "A visualization grammar extension for Echarts to make it more powerful.",
   "main": "dist/echarts-plus.js",
   "scripts": {
