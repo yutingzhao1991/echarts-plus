@@ -163,7 +163,7 @@ function generateSeries (data, config, seriesConfig, categoryIndexMap) {
         _.assign(subConfig, sConfig)
         subConfig.generator = null
         return generateSeries(group, config, [subConfig], categoryIndexMap)[0]
-      }).sort(sConfig.sort).value()
+      }).sortBy(sConfig.sort).value()
     }
     var visions = _.chain(sConfig.visions).filter((v) => {
       return v.channel !== 'name'

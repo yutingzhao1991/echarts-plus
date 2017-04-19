@@ -31,10 +31,8 @@
         smooth: true,
         connectNulls: true
       },
-      sort (a, b) {
-        a = seriesSort[a._plus_name] || 99
-        b = seriesSort[b._plus_name] || 99
-        return a - b
+      sort (item) {
+        return seriesSort[item._plus_name]
       },
       generator: 'platform' // 按照platform分组，每个分组生成一个series
     }],
