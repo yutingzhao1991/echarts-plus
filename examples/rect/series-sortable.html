@@ -12,6 +12,10 @@
   <script src="../../dist/echarts-plus-all.js"></script>
   <script src="./data.js"></script>
   <script id="code">
+  var seriesSort = {
+    "移动端": 1,
+    "PC端": 2
+  }
   new EChartsPlus(data, {
     coord: 'rect',
     series: [{
@@ -27,16 +31,17 @@
         smooth: true,
         connectNulls: true
       },
+      sort (a, b) {
+        a = seriesSort[a._plus_name] || 99
+        b = seriesSort[b._plus_name] || 99
+        return a - b
+      },
       generator: 'platform' // 按照platform分组，每个分组生成一个series
     }],
     option: {
       tooltip: {
         trigger: 'axis'
       }
-    },
-    seriesSort: {
-      '移动端': 1,
-      'PC端': 2
     },
     legendTarget: 'series'
   }).renderTo('main')
