@@ -30,6 +30,13 @@ export default function build (data, config) {
 
   // 生成series
   var series = generateSeries(data, config, config.series, categoryIndexMap)
+  if (config.seriesSort) {
+    series.sort((a, b) => {
+      a = config.seriesSort[a.name] || 99
+      b = config.seriesSort[b.name] || 99
+      return a - b
+    })
+  }
   opt.series = series
 
   // 生成legend
